@@ -16,8 +16,7 @@ main_light = sim.getObject('/main_light')
 air_conditioner_status = sim.getObject('/air_conditioner_status')
 COLOR_COMPONENT = sim.colorcomponent_ambient_diffuse
 
-
-# COLORS DEFINITION
+# COLORS DEFINITION RGB NORMALIZZATO DA 0 A 1
 MAIN_LIGHT_ON = [1, 1, 0]
 COLD_AIR      = [0.3, 0.7, 1]
 HOT_AIR       = [1, 0.2, 0]
@@ -30,8 +29,8 @@ def manage_door(sim, message):
         sim.setJointTargetPosition(door, -0.9, [])
 
 def manage_main_light(sim, message):
-
-    #color = sim.getObjectColor(main_light,0,COLOR_COMPONENT)
+    
+    #color = sim.getObjectColor(main_light,0,COLOR_COMPONENT) # FUNZIONE PER RICEVERE ARRAY RGB
     if message == "on":
         sim.setShapeColor(main_light, None, COLOR_COMPONENT, MAIN_LIGHT_ON)
     if message == "off":
@@ -44,8 +43,6 @@ def manage_air(sim, message):
         sim.setShapeColor(air_conditioner_status, None, COLOR_COMPONENT, COLD_AIR)
     if message == "off":
         sim.setShapeColor(air_conditioner_status, None, COLOR_COMPONENT, LIGHT_OFF)
-
-
 
 def connect_mqtt() -> mqtt_client:
     def on_connect(client, userdata, flags, rc):
@@ -62,24 +59,23 @@ def connect_mqtt() -> mqtt_client:
 
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):
+        # FILTRO MESSAGGIO PER TOPIC
         if msg.topic == "door":
             manage_door(sim, msg.payload.decode())
         if msg.topic == "main_light":
             manage_main_light(sim, msg.payload.decode())
         if msg.topic == "air_conditioner":
             manage_air(sim, msg.payload.decode())
-
-
+            
+    # ISCRIZIONE AI TOPIC
     for topic in topics:
         client.subscribe(topic)
     client.on_message = on_message
-
 
 def run():
     client = connect_mqtt()
     subscribe(client)
     client.loop_forever()
-
 
 if __name__ == '__main__':
     run()
