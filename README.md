@@ -1,6 +1,32 @@
 # DigitalTwin
 Progetto di Laboratorio di Reti e Sistemi Distribuiti
 
+## Installazione
+
+ - Clonare la repo: `git clone https://github.com/dannydenovi/DigitalTwin.git`
+ - Spostarsi nella cartella: `cd /path/to/DigitalTwin`
+ - (Opzionale) Creare un ambiente virtuale: `python3 -m venv venv` ed in seguito `source venv/bin/activate`
+ - Installare le dipendenze con `python3 setup.py install`
+
+
+## Funzionamento
+
+### Raspberry Pi
+
+(TODO: SCRIVERE I PIN)
+
+ - Eseguire `python3 home.py`
+ 
+ #### Flags
+ 
+ - `-r/--random`: Nel caso in cui si volessero generare numeri random per la temperatura e disattivare il sensore.
+
+### MacOS/Linux
+
+- Aprire con CoppeliaSim `room.ttt`
+- Eseguire `python3 simulation.py`
+
+
 ## Documentazione
 
 [Coppelia API Python](https://github.com/CoppeliaRobotics/zmqRemoteApi/tree/master/clients/python)
