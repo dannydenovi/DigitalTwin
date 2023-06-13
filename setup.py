@@ -20,7 +20,7 @@ if platform.machine().startswith('arm') and platform.system() == 'Linux':
     subprocess.run(['cd', 'Adafruit_Python_DHT', '&&', 'sudo', 'python', 'setup.py', 'install'])
 
 setup(
-    name='nome_del_progetto',
+    name='DigitalTwin',
     version='1.0.0',
     packages=find_packages(),
     install_requires=dependencies,
