@@ -4,7 +4,7 @@ from paho.mqtt import client as mqtt_client
 #MQTT SETTINGS
 broker = '192.168.1.221'
 port = 1883
-topics =["door", "main_light", "air_conditioner"]
+topics =["door", "main_light", "temperature"]
 client_id = f'macbook'
 
 # COPPELIA CONNECTION
