@@ -87,7 +87,7 @@ def measure_temp():
         else:
             msg = manage_temp(randint(0, 40))
         
-        Broker.publish(topic="air_conditioner", payload=str(msg))
+        Broker.publish(topic="temperature", payload=str(msg))
         sleep(2)
 
 
