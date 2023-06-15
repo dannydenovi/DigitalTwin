@@ -108,16 +108,16 @@ def door_button_callback(channel):
 
 
 def light_button_callback(channel):
-    global door_state
+    global light_state
     
-    if door_state:
+    if light_state:
         msg = "off"
         GPIO.output(LIGHT_LED, GPIO.LOW)
-        door_state = False
+        light_state = False
     else:
         msg = "on"
         GPIO.output(LIGHT_LED, GPIO.HIGH)
-        door_state = True
+        light_state = True
     
     Broker.publish(topic="main_light", payload=str(msg))
 
