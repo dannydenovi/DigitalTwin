@@ -24,4 +24,5 @@ install_arm:
 	@echo allow_anonymous true | tee -a /etc/mosquitto/mosquitto.conf
 	@git clone https://www.github.com/adafruit/Adafruit_Python_DHT.git
 	@cd Adafruit_Python_DHT && python3 setup.py install
+	@systemctl restart mosquitto.service
 
